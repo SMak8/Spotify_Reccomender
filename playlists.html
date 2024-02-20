@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Playlists</title>
+    <script>
+        // function selectPlaylist(playlistName, playlistId) {
+        //     fetch('/handle_playlist_selection', {
+        //         method: 'POST',
+        //         body: JSON.stringify({ 'playlist_name': playlistName, 'playlist_id': playlistId }),
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+        //     }).then(response => {
+        //         if (response.ok) {
+        //             console.log("Playlist selected:", playlistName, "with ID:", playlistId);
+        //             window.location.href = '/playlist/' + playlistId;
+        //         }
+        //     }).catch(error => console.error('Error:', error));
+        // }
+    </script>
+</head>
+<body>
+    <h1>Spotify Playlists</h1>
+    <!-- <ul>
+        {% for name, id in playlists.items() %}
+            <li><a href="/playlist/{{ id }}">{{ name }}</a></li>
+        {% endfor %}
+    </ul>     -->
+    <ul>
+        {% for name, id in playlists.items() %}
+            <li>
+                <form action="/playlist_selection" method="post">
+                    <input type="hidden" name="playlist_id" value="{{ id }}">
+                    <input type="hidden" name="playlist_name" value="{{ name }}">
+                    <button type="submit">{{ name }}</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
